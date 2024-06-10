@@ -1,0 +1,10 @@
+name: asif-ecommerce
+services:
+  api:
+    build:
+      context: ./ecommerce
+      dockerfile: Dockerfile
+    volumes:
+      - ./ecommerce:/code  # Sync local development directory with the container
+    ports:
+      - "8000:8000"  # Expose container port 8000 to host port 8000 

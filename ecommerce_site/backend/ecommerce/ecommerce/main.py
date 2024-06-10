@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from sqlmodel import Field, SQLModel,create_engine, select,Session,delete
+from dotenv import load_dotenv
+import os
 
-
-DATABASE_KEY= 'postgresql://neondb_owner:LAYBh2ETrNs0@ep-shrill-shadow-a1dtu58s.ap-southeast-1.aws.neon.tech/full_stack_project01?sslmode=require'
+load_dotenv()
+DATABASE_KEY= os.getenv("DATABASE_KEY")
 
 #table products
 class Product(SQLModel, table=True):
@@ -19,7 +21,7 @@ class User(SQLModel, table=True):
 
 #engine links table to database 
 engine = create_engine(DATABASE_KEY, echo=True)
-SQLModel.metadata.create_all(engine)
+#SQLModel.metadata.create_all(engine)
 
 app = FastAPI()
 
